@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Dish - RestoAdmin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar p-3" id="sidebar">
+            <div class="d-flex align-items-center mb-4">
+                <i class="fas fa-utensils fa-2x me-2" style="color: var(--accent-color);"></i>
+                <h4 class="logo m-0">RestoAdmin</h4>
+            </div>
+            <hr class="bg-light">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin.html">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../addRestaurant/index.html">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Restaurant
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="fas fa-utensils"></i>
+                        Add Dishes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../orders/index.html">
+                        <i class="fas fa-clipboard-list"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item mt-1" id="logout-btn">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+            <!-- Top Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4 rounded shadow-sm">
+                <div class="container-fluid">
+                    <button class="btn btn-sm d-lg-none" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-utensils me-2"></i> Add New Dish</h5>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Add Dish Form -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Dish Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="addDishForm">
+                                    <!-- Dish Name -->
+                                    <div class="mb-4">
+                                        <label for="dishName" class="form-label">Dish Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="dishName" placeholder="Enter dish name" />
+                                    </div>
+                                    
+                                    <!-- Description -->
+                                    <div class="mb-4">
+                                        <label for="dishDescription" class="form-label">Description <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="dishDescription" rows="3" placeholder="Enter dish description"></textarea>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <!-- Price -->
+                                        <div class="col-md-6 mb-4">
+                                            <label for="dishPrice" class="form-label">Price <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number" class="form-control" id="dishPrice" placeholder="0.00" step="0.01" min="0" />
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Restaurant Selection -->
+                                        <div class="col-md-6 mb-4">
+                                            <label for="restaurantSelect" class="form-label">Restaurant <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="restaurantSelect">
+                                                <option value="0" selected disabled>Select restaurant</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Image Upload -->
+                                    <div class="mb-4">
+                                        <label class="form-label">Dish Image</label>
+                                        <div id="dishImageUploadContainer">
+                                            <input type="file" id="dishImage" accept="image/*" />
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Submit Button -->
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-custom btn" id="addDishBtn" onclick="">
+                                            <i class="fas fa-save me-2"></i> Add Dish
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Help Section -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i> Tips</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-lightbulb me-2"></i> Best Practices</h6>
+                                    <ul class="mb-0">
+                                        <li>Use clear, descriptive dish names</li>
+                                        <li>Include key ingredients in description</li>
+                                        <li>Upload high-quality images</li>
+                                        <li>Set accurate pricing</li>
+                                    </ul>
+                                </div>
+                                <div class="alert alert-warning">
+                                    <h6><i class="fas fa-exclamation-triangle me-2"></i> Required Fields</h6>
+                                    <p class="mb-0">Fields marked with <span class="text-danger">*</span> are required.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="app.js"></script>
+    <!-- Custom JS -->
+    <!-- <script>
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('main-content').classList.toggle('active');
+        });
+        
+        // Image upload preview
+        const dishImageUpload = document.getElementById('dishImageUpload');
+        const dishImage = document.getElementById('dishImage');
+        const dishImagePreview = document.getElementById('dishImagePreview');
+        
+        dishImageUpload.addEventListener('click', function() {
+            dishImage.click();
+        });
+        
+        dishImage.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    dishImagePreview.src = event.target.result;
+                    dishImagePreview.style.display = 'block';
+                    dishImageUpload.style.display = 'none';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Form submission
+        document.getElementById('addDishForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For demonstration, we'll just show an alert
+            alert('Dish added successfully!');
+            
+            // Reset form
+            this.reset();
+            dishImagePreview.style.display = 'none';
+            dishImageUpload.style.display = 'block';
+        });
+    </script> -->
+</body>
+</html>

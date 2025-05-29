@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Restaurant</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar p-3" id="sidebar">
+            <div class="d-flex align-items-center mb-4">
+                <i class="fas fa-utensils fa-2x me-2" style="color: var(--accent-color);"></i>
+                <h4 class="logo m-0">RestoAdmin</h4>
+            </div>
+            <hr class="bg-light">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin.html">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Restaurant
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../addDish/index.html">
+                        <i class="fas fa-utensils"></i>
+                        Add Dishes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../orders/index.html">
+                        <i class="fas fa-clipboard-list"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item mt-1" id="logout-btn">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+    </div>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i> Add New Restaurant</h4>
+                        <a href="../admin.html" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i> Back to List
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <form id="addRestaurantForm">
+                            <!-- Restaurant Name -->
+                            <div class="mb-4">
+                                <label for="restaurantName" class="form-label">Restaurant Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="restaurantName" placeholder="Enter restaurant name" />
+                            </div>
+                            
+                            <!-- Description -->
+                            <div class="mb-4">
+                                <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="description" rows="3" placeholder="Enter restaurant description"></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <!-- Location -->
+                                <div class="col-md-6 mb-4">
+                                    <label for="location" class="form-label">Location <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="location" placeholder="Enter restaurant location" />
+                                </div>
+                                
+                                <!-- Contact Number -->
+                                <div class="col-md-6 mb-4">
+                                    <label for="contactNumber" class="form-label">Contact Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="contactNumber" placeholder="Enter contact number" />
+                                </div>
+                            </div>
+                            
+                            <!-- Rating -->
+                            <div class="mb-4">
+                                <label class="form-label">Rating</label>
+                                <div class="rating-stars">
+                                    <select class="form-select" id="ratingSelect" style="width: auto;">
+                                        <option value="0">Select rating</option>
+                                        <option value="1">1 Star</option>
+                                        <option value="2">2 Stars</option>
+                                        <option value="3">3 Stars</option>
+                                        <option value="4">4 Stars</option>
+                                        <option value="5">5 Stars</option>
+                                    </select>
+                                    <div class="stars">
+                                        <i class="fas fa-star" data-value="1"></i>
+                                        <i class="fas fa-star" data-value="2"></i>
+                                        <i class="fas fa-star" data-value="3"></i>
+                                        <i class="fas fa-star" data-value="4"></i>
+                                        <i class="fas fa-star" data-value="5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Image Upload -->
+                            <div class="mb-4">
+                                <label class="form-label">Restaurant Image</label>
+                                <div id="imageUploadContainer">
+                                    <input type="file" id="restaurantImage" accept="image/*" />
+                                </div>
+                            </div>
+                            
+                            <!-- Delivery Available -->
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="deliveryAvailable" />
+                                    <label class="form-check-label" for="deliveryAvailable">
+                                        Delivery Available
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-custom btn">
+                                    <i class="fas fa-save me-2"></i> Add Restaurant
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <!-- <script>
+        // Star rating interaction
+        const stars = document.querySelectorAll('.stars i');
+        const ratingSelect = document.getElementById('ratingSelect');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const value = parseInt(this.getAttribute('data-value'));
+                ratingSelect.value = value;
+                updateStars(value);
+            });
+        });
+        
+        ratingSelect.addEventListener('change', function() {
+            const value = parseInt(this.value);
+            updateStars(value);
+        });
+        
+        function updateStars(value) {
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                if (starValue <= value) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+        
+        // Image upload preview
+        const imageUpload = document.getElementById('imageUpload');
+        const restaurantImage = document.getElementById('restaurantImage');
+        const imagePreview = document.getElementById('imagePreview');
+        
+        imageUpload.addEventListener('click', function() {
+            restaurantImage.click();
+        });
+        
+        restaurantImage.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    imagePreview.src = event.target.result;
+                    imagePreview.style.display = 'block';
+                    imageUpload.style.display = 'none';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Form submission
+        document.getElementById('addRestaurantForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For demonstration, we'll just show an alert
+            alert('Restaurant added successfully!');
+            
+            // Reset form
+            this.reset();
+            updateStars(0);
+            imagePreview.style.display = 'none';
+            imageUpload.style.display = 'block';
+        });
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
